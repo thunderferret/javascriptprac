@@ -3,7 +3,11 @@ import morgan from "morgan";
 import helmet from "helmet";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-import { userRouter } from "./router";
+import globalRouter from "./routers/globalRouter";
+import userRouter from "./routers/userRouter";
+import videoRouter from "./routers/videoRouter";
+import { localsMiddleware } from "./middlewares";
+
 
 
 
@@ -11,19 +15,17 @@ const app = express();
 const PORT = 4000;
 
 
-function handleListening(req){
-   console.log("HOME");
-}
-
-
 app.use(helmet());
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended : true}));
+app.set("view engine","pug");
+
 app.use(cookieParser());
-
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : true}));
 app.use(morgan("dev"));
 
-app.get("/user",userRouter);
+app.use(localsMiddleware);
+app.use("/",globalRouter);
+app.use("/users",userRouter);
+app.use("/videos",videoRouter);
 
 export default app;

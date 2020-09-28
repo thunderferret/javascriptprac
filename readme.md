@@ -5,8 +5,8 @@ Youtube Clone Coding node.js
 ## Pages:
 
 - [ ] Home
-- [ ] Join
-- [ ] Login
+- [x] Join
+- [x] Login
 - [ ] logout
 - [x] search
 

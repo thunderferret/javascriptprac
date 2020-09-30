@@ -3,3 +3,4 @@ pakage.json
 routes.js
 .babelrc
 pakage-lock.json
+.gitignore

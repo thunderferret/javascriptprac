@@ -1,7 +1,8 @@
+import "./db";
 import app from "./app";
 
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 const handleListening = () => console.log("Listening on localhost 4000");
 

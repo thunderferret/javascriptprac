@@ -1,0 +1,4 @@
+.env
+.pakage.json
+.pakage-lock.json
+routes.js

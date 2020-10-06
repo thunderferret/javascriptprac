@@ -78,7 +78,7 @@ export const postEditVideo = async(req, res) => {
 
     console.log(id);
     try{
-        await Video.findOneAndUpdate({id},{title,description});
+        await Video.findOneAndUpdate({_id:id},{title,description});
         
         res.redirect(routes.videoDetail(id));
 
@@ -88,4 +88,14 @@ export const postEditVideo = async(req, res) => {
 };
 
 
-export const deleteVideo = (req, res) => res.render("deleteVideo");
+export const deleteVideo = async(req, res) => {
+    const {
+        params : {id}
+    } = req;
+    try{
+        await Video.findOneAndDelete({ _id : id });
+    }catch(error){
+        console.error(error);
+    }
+    res.redirect(routes.home);
+}

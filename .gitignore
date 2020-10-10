@@ -3,4 +3,5 @@
 .pakage-lock.json
 routes.js
 uploads
-
+node_modules
+.babelrc

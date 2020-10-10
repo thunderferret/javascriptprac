@@ -2,7 +2,7 @@ import routes from "../routes";
 import Video from "../models/Video";
 
 export const home = async(req, res) =>{
-    const videos = await Video.find({});
+    const videos = await Video.find({}).sort({_id : -1});
     try{
     res.render("home", {pageTitle : "Home",videos});
     } catch(error){
@@ -12,11 +12,18 @@ export const home = async(req, res) =>{
 
 };
 
-export const search = (req, res) => {
+export const search = async(req, res) => {
     const {
         query:{term}
     } = req;// focus!
+    let videos = [];
+
     const searchingBy = req.query.term;
+    try {
+        videos = await Video.find({title : {$regex: searchingBy, $options:"i"}});
+    } catch (error) {
+        console.log(error);
+    }
     res.render("search",{
         pageTitle : "Search",
         searchingBy : searchingBy,

@@ -27,7 +27,8 @@ export const postJoin = async (req,res,next)=>{
             res.redirect(routes.home);
         }
     }    
-}
+};
+
 export const getLogin = (req, res) => {
     res.render("login", { pageTitle: "Log In" });
 };

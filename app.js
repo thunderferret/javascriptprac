@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import helmet from "helmet";
 import bodyParser from "body-parser";
-import passport from "passport"
+import passport from "passport";
+import MongoStore from "connect-mongo";
+import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
@@ -18,7 +20,8 @@ import "./passport";
 
 
 const app = express();
-const PORT = 4000;
+const CokieStore = MongoStore(session);
+const PORT = process.env.PORT;
 
 
 app.use(helmet());
@@ -35,12 +38,15 @@ app.use(morgan("dev"));
 app.use(session({
     secret : process.env.COOKIE_SECRET,
     resave : true,
-    saveUninitialized : false
+    saveUninitialized : false,
+    store: new CokieStore({mongooseConnection:mongoose.connection})
 }));
 
-app.use(localsMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+app.use(localsMiddleware);
 
 app.use(routes.home,globalRouter);
 app.use(routes.users,userRouter);

@@ -16,7 +16,7 @@ export const postJoin = async (req,res,next)=>{
         res.render("join",{pageTitle:"Join"});
     }else{
         try{
-        const user = await User.create({
+        const user = await User({
             name : name,
             email : email
         });
@@ -29,6 +29,21 @@ export const postJoin = async (req,res,next)=>{
     }    
 };
 
+export const githubLogin = (req,res)=>{
+    passport.authenticate('github');
+}
+
+
+export const postGithubLogin = (req,res)=>{
+    res.send(routes.home);
+}
+
+
+export const githubLoginCallback = (accessToken, refreshToken, profile, cb) =>{
+    console.log(accessToken,refreshToken,profile,cb);
+};
+
+
 export const getLogin = (req, res) => {
     res.render("login", { pageTitle: "Log In" });
 };
@@ -40,13 +55,20 @@ export const postLogin = passport.authenticate("local",{
 
 export const logout = (req, res) => {
     //To Do : Profcess Log out
+    req.logout();
     res.redirect(routes.home);
 };
 
 
 export const userDetail = (req, res) => {
-    res.render(routes.userDetail(),{pageTitle:"userDetail"});
+    res.render("userDetail",{pageTitle:"userDetail"});
 }
-export const editProfile = (req, res) => res.render("editProfile");
+
+
+export const editProfile = (req, res) => {
+    console.log("editProfile entered");
+    
+    res.render("editProfile",{pageTitle:"editProfile"});
+};
 export const changePassword = (req, res) => res.render("changePassword");
 

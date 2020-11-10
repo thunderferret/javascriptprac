@@ -1,7 +1,7 @@
 .header {
-    background-color: $red;
+    background-color: $sk-orange;
     margin-bottom: 50px;
-    .header__wrapper {
+    .header__wrapper{
       padding: 5px 0px;
       width: 100%;
       margin: 0 auto;
@@ -9,10 +9,16 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       align-items: center;
-      .header__column {
+      :visited {
+        color : white;
+        text-decoration:none;
+      }
+      .header__column {rs
         i {
           color: white;
-          font-size: 40px;
+          font-size: 50px;
+          font-weight: 600;
+          text-transform: uppercase;
         }
         &:nth-child(2) {
           width: 100%;
@@ -22,12 +28,14 @@
           justify-self: end;
         }
         ul {
+          :visited {text-decoration : none}
           display: flex;
           color: white;
           font-weight: 600;
+          font-size: 14px;
           text-transform: uppercase;
           li:not(:last-child) {
-            margin-right: 15px;
+            margin-right: 30px;
           }
         }
         form {

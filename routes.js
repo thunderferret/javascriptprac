@@ -4,6 +4,7 @@ const JOIN = "/join";
 const LOGIN = "/login";
 const LOGOUT = "/logout";
 const SEARCH = "/search";
+const LOCALSITE = `http://localhost:${process.env.PORT}`
 
 // Users
 
@@ -74,7 +75,8 @@ const routes = {
     }
   },
   github : GITHUB,
-  githubCallback : GITHUB_CALLBACK
+  githubCallback : GITHUB_CALLBACK,
+  localSite : LOCALSITE
 };
 
 export default routes;

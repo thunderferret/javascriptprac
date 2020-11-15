@@ -40,13 +40,11 @@ export const postUpload = async(req, res) => {
         file : {path}
     }=req;
     // To do : upload and save video
-    console.log(req);
     const newVideo = await Video.create({
         fileUrl : path,
         title,
         description
     });
-    console.log(newVideo);
     res.redirect(routes.videoDetail(newVideo.id));
 }
 
@@ -86,9 +84,7 @@ export const postEditVideo = async(req, res) => {
     console.log(id);
     try{
         await Video.findOneAndUpdate({_id:id},{title,description});
-        
         res.redirect(routes.videoDetail(id));
-
     }catch(error){
         res.redirect(routes.home);
     }

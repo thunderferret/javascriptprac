@@ -9,9 +9,9 @@ const LOCALSITE = `http://localhost:${process.env.PORT}`
 // Users
 
 const USERS = "/users";
-const USER_DETAIL = "/:id";
-const EDIT_PROFILE = "/:id/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
+const ME="/me";
+const EDIT_PROFILE = "/:id/edit-profile";
 
 // Videos
 
@@ -76,7 +76,8 @@ const routes = {
   },
   github : GITHUB,
   githubCallback : GITHUB_CALLBACK,
-  localSite : LOCALSITE
+  localSite : LOCALSITE,
+  me : ME
 };
 
 export default routes;

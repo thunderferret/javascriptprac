@@ -26,7 +26,7 @@ globalRouter.get(
     passport.authenticate('github',
     {failureRedirect:routes.login}),
    function(req,res){
-       res.redirect("/");
+       res.redirect(routes.home);
    } 
     
 );

@@ -24,7 +24,9 @@ const CokieStore = MongoStore(session);
 const PORT = process.env.PORT;
 
 
-app.use(helmet());
+app.use(helmet(
+    {contentSecurityPolicy:false})
+);
 app.set("view engine","pug");
 app.use("/uploads",express.static("uploads"));
 app.use("/static",express.static("static"));
@@ -34,12 +36,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(morgan("dev"));
 
-app.use(localsMiddleware);
 
-
-
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(session({
     secret : process.env.COOKIE_SECRET,
     resave : true,
@@ -47,6 +44,11 @@ app.use(session({
     store: new CokieStore({mongooseConnection:mongoose.connection})
 }));
 
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(localsMiddleware);
 
 app.use(routes.home,globalRouter);
 app.use(routes.users,userRouter);

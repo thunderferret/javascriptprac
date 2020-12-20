@@ -11,6 +11,9 @@ block content
                 a(href=routes.editVideo(video.id))
                     button 도형 추출
                 h5.video__title=video.title
+                span Video Creator 
+                    h5.video__creator=video.creator
+                    
                 p.video__description=video.description
                 if video.views === 1
                     span.video__views 1 view

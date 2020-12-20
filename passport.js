@@ -1,6 +1,5 @@
 import routes from "./routes";
 import passport from "passport";
-import LocalStrategy from "passport-local";
 import User from "./models/User";
 import { githubLoginCallback } from "./controllers/userController";
 import GitHubStrategy from "passport-github2";
@@ -21,7 +20,15 @@ passport.use(
     )
 );
 
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
+passport.serializeUser(
+    function(user,done){
+        done(null,user);
+    }
+);
+passport.deserializeUser(
+    function(id,done){
+        User.findById(id,function(err,user){
+            done(err,user);
+        })
+    }
+);

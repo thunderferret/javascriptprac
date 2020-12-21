@@ -31,6 +31,20 @@ export const postJoin = async (req,res,next)=>{
     }    
 };
 
+export const getUserDetail = async (req,res) => {
+    const {
+        params : {id}
+    } =req;
+    try{
+    const user = await User.findById(id).populate("videos");
+    if(user.avatarUrl== null){user.avatarUrl=routes.defaultImage;}
+    res.render("userDetail",{pageTitle : "User Detail",user : user});
+    }catch(error){
+        console.log(error);
+        res.redirect(routes.home);
+    }
+}
+
 export const githubLogin = passport.authenticate("github",{failureRedirect:`${routes.login}`});
 
 
@@ -63,9 +77,18 @@ export const githubLoginCallback = async (_, __, profile, cb) =>{
     }
 };
 
-export const me = (req,res) =>{
-    if(req.user.avatarUrl == undefined) {req.user.avatarUrl="uploads/avatars/default.png";}
-    res.render("userDetail",{pageTitle:"User Detail",user:req.user})
+export const me = async (req,res) =>{
+    const {
+        user : {id}
+    } =req;
+    try{
+    const user = await User.findById(id).populate("videos");
+    if(user.avatarUrl== null){user.avatarUrl=routes.defaultImage;}
+    res.render("userDetail",{pageTitle : "User Detail",user : user});
+    }catch(error){
+        console.log(error);
+        res.redirect(routes.home);
+    }
 };
 
 export const getLogin = (req, res) => {

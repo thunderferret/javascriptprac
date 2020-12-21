@@ -5,15 +5,14 @@ block content
             .video__player
                 video(src=`/${video.fileUrl}`)
             .video__info
-                a(href=routes.editVideo(video.id))
-                    button Edit video
+                if video.creator.id === loggedUser.id
+                    a(href=routes.editVideo(video.id))
+                        button Edit video
 
-                a(href=routes.editVideo(video.id))
-                    button 도형 추출
+                    a(href=routes.editVideo(video.id))
+                        button 도형 추출
                 h5.video__title=video.title
-                span Video Creator 
-                    h5.video__creator=video.creator
-                    
+                   
                 p.video__description=video.description
                 if video.views === 1
                     span.video__views 1 view
@@ -24,3 +23,6 @@ block content
                     span.video__comment-number 1 comment
                 else
                     span.video__comment-number #{video.comments.length} comments
+            .video__author
+                |Uploaded by 
+                a(href=`${routes.userDetail(video.creator.id)}`)=video.creator.name

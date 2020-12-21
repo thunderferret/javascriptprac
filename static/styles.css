@@ -274,6 +274,10 @@ input[type=submit] {
 .video-detail__container .video__info .video__description {
   font-size: 16px;
 }
+.video-detail__container .video__info .video__author {
+  font-size: 16px;
+  color: peru;
+}
 .video-detail__container .video__comments {
   margin-top: 25px;
 }
@@ -297,6 +301,10 @@ input[type=submit] {
 .user-profile .user-profile__header .profile__username {
   font-size: 18px;
   margin-top: 15px;
+}
+.user-profile .user-profile__header .u-avatar {
+  width: 100px;
+  border-radius: 70%;
 }
 .user-profile .user-profile__btns {
   display: flex;

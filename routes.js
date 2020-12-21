@@ -11,6 +11,8 @@ const LOCALSITE = `http://localhost:${process.env.PORT}`
 const USERS = "/users";
 const CHANGE_PASSWORD = "/change-password";
 const ME="/me";
+const USER_DETAIL="/:id";
+const DEFAULT_IMAGE="uploads/avatars/default.png";
 const EDIT_PROFILE = "/:id/edit-profile";
 
 // Videos
@@ -77,7 +79,8 @@ const routes = {
   github : GITHUB,
   githubCallback : GITHUB_CALLBACK,
   localSite : LOCALSITE,
-  me : ME
+  me : ME,
+  defaultImage:DEFAULT_IMAGE
 };
 
 export default routes;

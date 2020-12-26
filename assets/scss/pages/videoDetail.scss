@@ -5,13 +5,9 @@
     align-items: center;
     max-width: 320;
     height : 240;
-
-    .video__player{
-      max-width: 320;
-      height: 240;
-      margin-bottom: 20px;
-    }
     
+    .videoPlayer:nth-child()
+
     .video__info {
       width: 50%;
       max-width: 850px;

@@ -37,8 +37,9 @@ export const getUserDetail = async (req,res) => {
     } =req;
     try{
     const user = await User.findById(id).populate("videos");
+    console.log(user);
     if(user.avatarUrl== null){user.avatarUrl=routes.defaultImage;}
-    res.render("userDetail",{pageTitle : "User Detail",user : user});
+    res.render("userDetail",{pageTitle : "User Detail",user : user,loggedUser : req.user});
     }catch(error){
         console.log(error);
         res.redirect(routes.home);
@@ -108,7 +109,12 @@ export const logout = (req, res) => {
 
 
 export const userDetail = (req, res) => {
-    res.render("userDetail",{pageTitle:"userDetail",user:req.user});
+    const {
+        params : {id}
+    } = req;
+        const user = User.findById(id);
+        console.log(user);
+    res.render("userDetail",{pageTitle:"userDetail",user : user});
 }
 
 

@@ -8,9 +8,9 @@ block content
                 img.u-avatar(src=`${routes.defautlImage}`)
 
             else
-                img.u-avatar(src=`/${user.avatarUrl}`)
+                img.u-avatar(src=`${user.avatarUrl}`)
             h4.profile__username=user.name
-        if user.id === loggedUser.id
+        if user._id === loggedUser._id
             .user-profile__btns
                 a(href=`${routes.editProfile(user.id)}`)
                     button ✏️ Edit Profile

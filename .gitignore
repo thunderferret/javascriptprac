@@ -5,6 +5,7 @@ routes.js
 uploads
 node_modules
 node_modules/*
+/node_modules
 .babelrc
 .eslintrc.js
 

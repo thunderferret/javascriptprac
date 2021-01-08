@@ -10,30 +10,39 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const config = {
 entry : ["@babel/polyfill",ENTRY_FILE],
+devtool: 'cheap-module-source-map',
 module : {
-rules : [
+rules : [ 
     {
-    test : /\.js$/,
-    use:[
-        'babel-loader'
-    ]
-}
-    ,
+        test: /\.(js)$/,
+        use: [
+          {
+            loader: "babel-loader",
+          },
+        ],
+      },
     {
         test : /\.s[ac]ss$/i,
         use:[
-            'style-loader',
             MiniCssExtractPlugin.loader,
             'css-loader',
-         'sass-loader',
-    
-        
+            'postcss-loader',
+         'sass-loader',        
         ]
+    },
+    {
+        test : /\.pug$/,
+        use: {
+            loader: 'pug-loader',
+            options: {
+              root: path.resolve(__dirname, './static')
+            }
+          }
     }
 ]
 },
 mode : MODE,
-plugins : [autopreFixer,
+plugins : [
 new MiniCssExtractPlugin({
     filename:"styles.css"
 })],

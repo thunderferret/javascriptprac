@@ -1,6 +1,5 @@
-import "../scss/styles.scss"
+import "../scss/styles.scss";
+import "./videoPlayer.js";
 
 
-const something = async() =>{
-    await console.log("FUCKTOUTUTUTUTU");
-}
+

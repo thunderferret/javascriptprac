@@ -17,7 +17,16 @@ const multerVideo = multer({
 })
 
 //const multerVideo = multer({dest:"uploads/videos/"});
-const multerAvatar = multer({dest:"uploads/avatars/"});
+//const multerAvatar = multer({dest:"uploads/avatars/"});
+
+const multerAvatar = multer({
+  storage : multerS3({
+    s3,
+    acl:"public-read",
+    bucket:"thunderferret"
+  })
+})
+
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "G.I.V.E. TUBE";

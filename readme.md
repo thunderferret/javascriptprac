@@ -4,24 +4,28 @@ Youtube Clone Coding node.js
 
 ## Pages:
 
-- [ ] Home
+- [x] Home
 - [x] Join
 - [x] Login
-- [ ] logout
+- [x] logout
 - [x] search
 
 
 
-- [ ] users
-- [ ] userDetails
-- [ ] Changepassword
-- [ ] editProfile
-- [ ] upload vido
-- [ ] delete video
-- [ ] videodetail
-- [ ] edit video
+- [x] users
+- [x] userDetails
+- [x] Changepassword
+- [x] editProfile
+- [x] upload vido
+- [x] delete video
+- [x] videodetail
+- [x] edit video
 
 
 
-
-
+- []
+- []
+- []
+- []
+- []
+- []

@@ -1,5 +1,8 @@
 import routes from "../routes";
 import Video from "../models/Video";
+import Comment from "../models/Comment";
+
+
 
 export const home = async(req, res) =>{
     const videos = await Video.find({}).sort({_id : -1});
@@ -53,22 +56,24 @@ export const postUpload = async(req, res) => {
 }catch(error){
     console.log(error);
 }
-}
+};
 
 export const videoDetail = async(req, res) => {
     const {
         params : {id}
     }=req;
     try{
-    const video = await Video.findById(id).populate("creator");
-    console.log(video);
-    res.render("videoDetail",{pageTitle:"VideoDetail",video,loggedUser : req.user});
+        const video = await Video.findById(id)
+        .populate("creator")
+        .populate("comments");
+        console.log(video);
+    res.render("videoDetail",{pageTitle: video.title ,video});
     }catch(error){
         console.log(error);
         res.redirect(routes.home);
     }
    
-}
+};
 export const getEditVideo = async(req, res) =>{
     const {
         params : {id}
@@ -129,4 +134,25 @@ export const postRegisterView = async (req, res) => {
     } finally {
       res.end();
     }
-  };
+};
+
+export const postAddComment = async (req, res) => {
+    const {
+      params: { id },
+      body: { comment },
+      user
+    } = req;
+    try {
+      const video = await Video.findById(id);
+      const newComment = await Comment.create({
+      text: comment,
+      creator: user.id
+      });
+      video.comments.push(newComment.id);
+      video.save();
+    } catch (error) {
+      res.status(400);
+    } finally {
+      res.end();
+    }
+};
